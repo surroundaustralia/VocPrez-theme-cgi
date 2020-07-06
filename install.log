@@ -1,19 +1,21 @@
 # Install Apache
 sudo apt install -y apache2
 sudo apt install -y libapache2-mod-wsgi-py3
+sudo a2enmod wsgi
 
 # configure Apache
-sudo nano /etc/apache/sites-available/000-default.conf
+sudo nano /etc/apache2/sites-available/000-default.conf
 ## insert apache.conf content
 
 # make VocPrez home dir
 sudo mkdir /var/www/vocprez
 sudo chown -R ubuntu /var/www/vocprez
-sudo chown -R www-data /var/www/vocprez/vocprez/cache
+
 
 # Get VocPrez
 cd /var/www/vocprez
 git clone https://github.com/RDFLib/VocPrez.git .
+sudo chown -R www-data /var/www/vocprez/vocprez/cache  # so Apache can write cache files
 # configure app.wsgi
 
 # Install Python

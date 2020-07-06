@@ -44,7 +44,7 @@ with open("routes.txt") as f:
 
 new = []
 for line in fileinput.input(APP_FILE):
-    if line.startswith("@app.route(\"/vocabulary/<string:vocab_id>/\")"):
+    if line.startswith("@app.route(\"/vocab/\")"):
         new.append("# -------------- inserted endpoint --------------------------------\n")
         new = new + insrt
         new.append("\n# -------------- end inserted endpoint --------------------------------\n")
