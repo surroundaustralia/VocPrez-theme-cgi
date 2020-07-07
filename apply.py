@@ -55,4 +55,12 @@ for line in fileinput.input(APP_FILE):
 with open(APP_FILE, "w") as f:
     f.writelines(new)
 
-print("appending to app.py")
+contents = None
+with open(APP_FILE, "r") as f:
+    contents = f.read()
+    contents = contents.replace(open(join(THIS_DIR, "routes-remove.txt")).read(), "")
+
+with open(APP_FILE, "w") as f:
+    f.write(contents)
+
+print("altering app.py")

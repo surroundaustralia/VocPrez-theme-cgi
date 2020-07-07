@@ -1,11 +1,11 @@
-@app.route("/vocabularies/<string:set_id>/")
+@app.route("/vocabs/<string:set_id>/")
 def vocabularies_set(set_id):
     sets = [
         "EarthResourceML",
         "GeoSciML"
     ]
     if set_id not in sets:
-        return render_vocprez_response(
+        return return_vocrez_error(
             "The vocab set ID supplied is invalid. It must be one of {}".format(", ".join(sets))
         )
 
@@ -36,12 +36,7 @@ def vocabularies_set(set_id):
     """.format(set_id)
 
     desc = ""
-    concept_schemes = sparql_query(
-        q,
-        config.VOCAB_SOURCES["cgi"]["sparql_endpoint"],
-        config.VOCAB_SOURCES["cgi"].get("sparql_username"),
-        config.VOCAB_SOURCES["cgi"].get("sparql_password"),
-    )
+    concept_schemes = sparql_query(q, sparql_username=config.SPARQL_USERNAME, sparql_password=config.SPARQL_PASSWORD)
 
     assert concept_schemes is not None, "Unable to query for ConceptSchemes"
 
@@ -67,3 +62,11 @@ def vocabularies_set(set_id):
         vocabs,
         total
     ).render()
+
+
+@app.route("/vocab/")
+def vocabularies():
+    return render_template(
+        "vocabularies.html",
+    )
+
