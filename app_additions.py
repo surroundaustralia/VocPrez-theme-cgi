@@ -1,3 +1,6 @@
+
+
+# ROUTE vocabularies_set
 @app.route("/vocabularies/<string:set_id>/")
 def vocabularies_set(set_id):
     sets = [
@@ -67,3 +70,4 @@ def vocabularies_set(set_id):
         vocabs,
         total
     ).render()
+# END ROUTE vocabularies_set

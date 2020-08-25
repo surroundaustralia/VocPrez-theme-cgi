@@ -262,12 +262,8 @@
   </div>
   <div id="strip" style="grid-column:1/4; background-color:rgb(240, 231, 138);"></div>
   <div id="mainmenu" style="grid-column:2;">
-    <a href="{{ url_for('index') }}">System Home</a> | 
-    <a href="{{ url_for('about') }}">About the system</a> | 
-    <a href="{{ url_for('sparql') }}">SPARQL Endpoint</a> | 
-    <a href="{{ url_for('vocabularies_set', set_id='GeoSciML') }}">GeoSciML Vocabs</a> | 
-    <a href="{{ url_for('vocabularies_set', set_id='EarthResourceML') }}">EarthResourceML Vocabs</a>
-  </div>    
+    {% include 'nav.html' %}
+  </div>   
   <div id="content" style="grid-column:2;">
     {% block content %}{% endblock %}
   </div><!-- #content -->
