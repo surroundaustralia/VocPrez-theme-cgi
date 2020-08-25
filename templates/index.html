@@ -1,41 +1,49 @@
 {% extends "page.html" %}
 
 {% block content %}
-    <h1>CGI's Vocabularies System</h1>
-    <p>
-        Welcome to the <a href=" http://www.cgi-iugs.org/">Commission for the Management and Application of Geosceicne Information (CGI)</a>'s public vocabulary system. This tool is an instance of <a href="https://github.com/RDFlib/VocPrez">VocPrez</a>, a read-only web delivery system for Simple Knowledge Organization System (SKOS)-formulated RDF vocabularies.
-    </p>
+  <h1 id="geoscience-vocabularies-for-linked-data">Geoscience Vocabularies for Linked Data</h1>
+  <p>For description of geological features, geological time, mineral occurrences, and mining-related features.</p>
 
-    <h2>Vocabularies</h2>
-    <p>
-        This system publishes vocabularies from two sources: <a href="http://geosciml.org/">GeoSciML</a> &amp; <a href="http://earthresourceml.org/">EarthResourceML</a>.
-    </p>
-    <p>Vocabulary sources:</p>
-    <ul>
-        <li><a href="{{ url_for('vocabularies_set', set_id='GeoSciML') }}">GeoSciML</a></li>
-        <li><a href="{{ url_for('vocabularies_set', set_id='EarthResourceML') }}">EarthResourceML</a></li>
-    </ul>
+  <h4 id="vocabularies-for-geosciml-and-earthresourceml">Vocabularies for GeoSciML and EarthResourceML</h4>
+  <ul>
+    <li><a href="http://resource.geosciml.org/def/voc/">Full list of all CGI vocabularies</a>
+      <ul>
+        <li>includes links to the CGI vocabulary service, SPARQL endpoints, and RESTful API’s for all vocabularies</li>
+      </ul>
+    </li>
+    <li><a href="{{ url_for('vocabularies_set', set_id='GeoSciML') }}">Vocabulary files for GeoSciML</a></li>
+    <li><a href="{{ url_for('vocabularies_set', set_id='EarthResourceML') }}">Vocabulary files for the EarthResourceML</a></li>
+  </ul>
 
-    <h3>Vocabulary Modelling</h3>
-    <p>
-        CGI conceives of <em>vocabularies</em> as being synonymous with SKOS' <vocab_id>skos:ConceptScheme</vocab_id> class, so each GA vocab is an instance of <vocab_id>skos:ConceptScheme</vocab_id>. Not all users of SKOS make this conception.
-    </p>
+  <h4 id="vocabularies-for-geological-time---the-ics-international-stratigraphic-timescale">Vocabularies for Geological Time - the ICS international stratigraphic timescale</h4>
+  <ul>
+    <li><a href="https://vocabs.ardc.edu.au/viewById/196">Geological Timescale service - landing page</a></li>
+    <li><a href="https://vocabs.ardc.edu.au/repository/api/lda/csiro/international-chronostratigraphic-chart/geologic-time-scale-2020/collection">CGI geological time vocabulary service</a></li>
+    <li><a href="https://github.com/CGI-IUGS/timescale-data/tree/master/rdf/">Vocabulary files for the International Stratigraphic Chart</a> (RDF, TTL, HTML)</li>
+    <li><a href="https://stratigraphy.org/timescale/">International Stratigraphic Chart, Interactive version</a></li>
+  </ul>
 
-    <h2>Tools</h2>
-    <h3>Profiles</h3>
+  <hr />
+
+  <h2>Modelling &amp; Tools</h2>
+  <h4>Vocabulary Modelling</h4>
+  <p>
+      CGI conceives of <em>vocabularies</em> as being synonymous with SKOS' <vocab_id>skos:ConceptScheme</vocab_id> class, so each GA vocab is an instance of <vocab_id>skos:ConceptScheme</vocab_id>. Not all users of SKOS make this conception.
+  </p>
+  <h4>Profiles</h4>
 <p>All the content of all vocabs can be accessed individually in web page (HTML) and machine-readable forms. Each list fo vocabs, vocabulary and Concept web page contains a link to the listing of all profiles and formats available for that object. Look for the <strong><em>Alternate Profiles</em></strong> hyperlink.</p>
-    <h3>Services</h3>
-    <p>All of the vocabularies in this system are accessible via a single <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL endpoint</a>:</p>
-    <ul>
-        <li><a href="{{ url_for('sparql') }}">SPARQL Endpoint</a></li>
-    </ul>
-    <h3>System Code</h3>
-    <p>
-        The code for this vocabulary publication system - VocPrez - is available online:
-    </p>
-    <ul>
-        <li><a href="https://github.com/RDFLib/VocPrez/">VocPrez @ RDFlib on GitHub</a></li>
-    </ul>
-    <p>Note that this particular instance of VocPrez contains some configuration and styling that isn't present in that main VocPrez repository</p>
+  <h4>Services</h4>
+  <p>All of the vocabularies in this system are accessible via a single <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL endpoint</a>:</p>
+  <ul>
+      <li><a href="{{ url_for('sparql') }}">SPARQL Endpoint</a></li>
+  </ul>
+  <h4>System Code</h4>
+  <p>
+      The code for this vocabulary publication system - VocPrez - is available online:
+  </p>
+  <ul>
+      <li><a href="https://github.com/RDFLib/VocPrez/">VocPrez @ RDFlib on GitHub</a></li>
+  </ul>
+  <p>Note that this particular instance of VocPrez contains some configuration and styling that isn't present in that main VocPrez repository</p>
 
 {% endblock %}

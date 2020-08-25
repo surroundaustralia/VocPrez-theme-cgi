@@ -1,5 +1,5 @@
 # ROUTE vocabularies_set
-@app.route("/vocabularies/<string:set_id>/")
+@app.route("/vocabs/<string:set_id>/")
 def vocabularies_set(set_id):
     sets = [
         "EarthResourceML",
@@ -37,12 +37,7 @@ def vocabularies_set(set_id):
     """.format(set_id)
 
     desc = ""
-    concept_schemes = sparql_query(
-        q,
-        config.VOCAB_SOURCES["cgi"]["sparql_endpoint"],
-        config.VOCAB_SOURCES["cgi"].get("sparql_username"),
-        config.VOCAB_SOURCES["cgi"].get("sparql_password"),
-    )
+    concept_schemes = sparql_query(q, sparql_username=config.SPARQL_USERNAME, sparql_password=config.SPARQL_PASSWORD)
 
     assert concept_schemes is not None, "Unable to query for ConceptSchemes"
 
