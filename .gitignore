@@ -7,6 +7,8 @@
 # config
 _config/
 
-
 # Python venv
 venv/
+
+# environment variables
+.ENV

@@ -37,7 +37,7 @@ def vocabularies_set(set_id):
     """.format(set_id)
 
     desc = ""
-    concept_schemes = sparql_query(q, sparql_username=config.SPARQL_USERNAME, sparql_password=config.SPARQL_PASSWORD)
+    concept_schemes = u.sparql_query(q, sparql_username=config.SPARQL_USERNAME, sparql_password=config.SPARQL_PASSWORD)
 
     assert concept_schemes is not None, "Unable to query for ConceptSchemes"
 
