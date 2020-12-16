@@ -1,3 +1,5 @@
+
+
 # ROUTE vocabularies_set
 @app.route("/vocabs/<string:set_id>/")
 def vocabularies_set(set_id):
@@ -6,7 +8,7 @@ def vocabularies_set(set_id):
         "GeoSciML"
     ]
     if set_id not in sets:
-        return return_vocrez_error(
+        return return_vocprez_error(
             "Invalid ID", 400, "The vocab set ID supplied is invalid. It must be one of {}".format(", ".join(sets))
         )
 
@@ -66,13 +68,3 @@ def vocabularies_set(set_id):
 # END ROUTE vocabularies_set
 
 
-# run the Flask app
-if __name__ == "__main__":
-    logging.basicConfig(
-        filename=config.LOGFILE,
-        level=logging.DEBUG,
-        datefmt="%Y-%m-%d %H:%M:%S",
-        format="%(asctime)s %(levelname)s %(filename)s:%(lineno)s %(message)s",
-    )
-
-    app.run(debug=config.DEBUG, threaded=True, port=5000)

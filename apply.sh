@@ -8,6 +8,7 @@ cp $VP_THEME_HOME/templates/* $VP_HOME/vocprez/view/templates
 echo "Config: creating VocPrez config with $VP_THEME_HOME/config.py"
 echo "Alter config.py to include variables"
 sed 's#$SPARQL_ENDPOINT#'"$SPARQL_ENDPOINT"'#' $VP_THEME_HOME/config.py > $VP_THEME_HOME/config_updated.py
+sed -i 's#$SYSTEM_URI_BASE#'"$SYSTEM_URI_BASE"'#' $VP_THEME_HOME/config_updated.py
 if [ -z "$SPARQL_USERNAME" ]
 then
       sed -i 's#$SPARQL_USERNAME#None#' $VP_THEME_HOME/config_updated.py
@@ -28,14 +29,17 @@ echo "Add endpoints to $VP_HOME/vocprez/app.py"
 # find the "# run the Flask app" and remove it and everything below
 run_line=$(grep -n "# run the Flask app" $VP_HOME/vocprez/app.py | head -n 1 | cut -d: -f1)
 run_line=$((run_line -1))
-echo "cutting off at $run_line lines"
 head -$run_line $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
 
-echo "add vocabularies_set()"
-if ! grep -q "# ROUTE vocabularies_set" $VP_HOME/vocprez/app.py; then
-    cat $VP_THEME_HOME/app_additions.py >> $VP_THEME_HOME/app_temp.py
-fi
 
-mv $VP_THEME_HOME/app_temp.py $VP_HOME/vocprez/app.py
+echo "Route mapping"
+if `grep -q "# ROUTE vocabularies_set" "$VP_HOME/vocprez/app.py"`; then
+    echo "already there"
+else
+    sed -n '/# END ROUTE cache_reload/q;p' $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
+    cat $VP_THEME_HOME/app_additions.py >> $VP_THEME_HOME/app_temp.py
+    sed -e '1,/# run the Flask app/ d' $VP_HOME/vocprez/app.py >> $VP_THEME_HOME/app_temp.py
+    mv $VP_THEME_HOME/app_temp.py $VP_HOME/vocprez/app.py
+fi
 
 echo "customisation done"
