@@ -32,14 +32,15 @@ run_line=$((run_line -1))
 head -$run_line $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
 
 
-echo "Route mapping"
-if `grep -q "# ROUTE vocabularies_set" "$VP_HOME/vocprez/app.py"`; then
-    echo "already there"
-else
-    sed -n '/# END ROUTE cache_reload/q;p' $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
-    cat $VP_THEME_HOME/app_additions.py >> $VP_THEME_HOME/app_temp.py
-    sed -e '1,/# run the Flask app/ d' $VP_HOME/vocprez/app.py >> $VP_THEME_HOME/app_temp.py
-    mv $VP_THEME_HOME/app_temp.py $VP_HOME/vocprez/app.py
-fi
+# not used since the home page for all vocabularies is static
+#echo "Route mapping"
+#if `grep -q "# ROUTE vocabularies_set" "$VP_HOME/vocprez/app.py"`; then
+#    echo "already there"
+#else
+#    sed -n '/# END ROUTE cache_reload/q;p' $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
+#    cat $VP_THEME_HOME/app_additions.py >> $VP_THEME_HOME/app_temp.py
+#    sed -e '1,/# run the Flask app/ d' $VP_HOME/vocprez/app.py >> $VP_THEME_HOME/app_temp.py
+#    mv $VP_THEME_HOME/app_temp.py $VP_HOME/vocprez/app.py
+#fi
 
 echo "customisation done"

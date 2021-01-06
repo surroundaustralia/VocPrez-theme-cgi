@@ -7,63 +7,29 @@ def vocabularies_set(set_id):
         "EarthResourceML",
         "GeoSciML"
     ]
+
     if set_id not in sets:
         return return_vocprez_error(
             "Invalid ID", 400, "The vocab set ID supplied is invalid. It must be one of {}".format(", ".join(sets))
         )
 
-    page = (
-        int(request.values.get("page")) if request.values.get("page") is not None else 1
-    )
-    per_page = (
-        int(request.values.get("per_page"))
-        if request.values.get("per_page") is not None
-        else 20
-    )
-
     # get this set's list of vocabs
-    vocabs = []
-    q = """
-        PREFIX skos: <http://www.w3.org/2004/02/skos/core#>
-        PREFIX dcterms: <http://purl.org/dc/terms/>
-        
-        SELECT ?uri ?pl ?prov
-        WHERE {{
-            ?uri a skos:ConceptScheme ;
-                 skos:prefLabel ?pl ;
-                 dcterms:provenance ?prov .
-        
-                FILTER REGEX(?prov, "{}", "i")
-        }}
-        ORDER BY ?pl
-    """.format(set_id)
+    this_vocs = {}
+    for k, v in g.VOCABS.items():
+        if set_id == "EarthResourceML":
+            if v.source == "https://earthresourceml.org":
+                this_vocs[k] = v
+        elif set_id == "GeoSciML":
+            if v.source == "http://www.opengis.net/doc/geosciml/4.1":
+                this_vocs[k] = v
 
-    desc = ""
-    concept_schemes = u.sparql_query(q, sparql_username=config.SPARQL_USERNAME, sparql_password=config.SPARQL_PASSWORD)
-
-    assert concept_schemes is not None, "Unable to query for ConceptSchemes"
-
-    for cs in concept_schemes:
-        vocabs.append((
-            str(url_for("vocabulary", vocab_id=cs["uri"]["value"].split("/")[-1])),
-            str(cs["pl"]["value"])
-        ))
-        desc = str(cs["prov"]["value"])
-
-    start = (page - 1) * per_page
-    end = start + per_page
-    total = len(vocabs)
-    vocabs = vocabs[start:end]
-
-    return ContainerRenderer(
+    return VocabulariesRenderer(
         request,
-        request.base_url,
-        set_id + ' Vocabularies',
-        desc,
-        None,
-        None,
-        vocabs,
-        total
+        this_vocs,
+        config.SYSTEM_URI_BASE,
+        config.VOCS_URI,
+        config.VOCS_TITLE,
+        config.VOCS_DESC
     ).render()
 # END ROUTE vocabularies_set
 
