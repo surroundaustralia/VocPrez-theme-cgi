@@ -25,14 +25,13 @@ fi
 echo "Add config file to VP"
 mv $VP_THEME_HOME/config_updated.py $VP_HOME/vocprez/_config/__init__.py
 
-echo "Add endpoints to $VP_HOME/vocprez/app.py"
-# find the "# run the Flask app" and remove it and everything below
-run_line=$(grep -n "# run the Flask app" $VP_HOME/vocprez/app.py | head -n 1 | cut -d: -f1)
-run_line=$((run_line -1))
-head -$run_line $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
-
-
 # not used since the home page for all vocabularies is static
+#echo "Add endpoints to $VP_HOME/vocprez/app.py"
+## find the "# run the Flask app" and remove it and everything below
+#run_line=$(grep -n "# run the Flask app" $VP_HOME/vocprez/app.py | head -n 1 | cut -d: -f1)
+#run_line=$((run_line -1))
+#head -$run_line $VP_HOME/vocprez/app.py > $VP_THEME_HOME/app_temp.py
+
 #echo "Route mapping"
 #if `grep -q "# ROUTE vocabularies_set" "$VP_HOME/vocprez/app.py"`; then
 #    echo "already there"
