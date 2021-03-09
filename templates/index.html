@@ -1,8 +1,8 @@
 {% extends "page.html" %}
 
 {% block content %}
-  <h1 id="geoscience-vocabularies-for-linked-data">Geoscience Vocabularies for Linked Data</h1>
-  <p>For description of geological features, geological time, mineral occurrences, and mining-related features.</p>
+  <h1 id="geoscience-vocabularies-for-linked-data">Geoscience Vocabularies</h1>
+  <p>For the description of geological features, geological time, mineral occurrences, and mining-related features.</p>
 
   <h4 id="vocabularies-for-geosciml-and-earthresourceml">Vocabularies for GeoSciML and EarthResourceML</h4>
   <ul>
@@ -21,13 +21,12 @@
 
   <h2>Modelling &amp; Tools</h2>
   <h4>Vocabulary Modelling</h4>
-  <p>
-      CGI conceives of <em>vocabularies</em> as being synonymous with SKOS' <vocab_id>skos:ConceptScheme</vocab_id> class, so each GA vocab is an instance of <vocab_id>skos:ConceptScheme</vocab_id>. Not all users of SKOS make this conception.
+  <p>CGI conceives of <em>vocabularies</em> as being synonymous with the <em><a href="https://www.w3.org/TR/skos-reference/">Simple Knowledge Organization System (SKOS)</a></em>'s <code>skos:ConceptScheme</code> class, so each CGI vocab is an instance of <code>skos:ConceptScheme</code>. All the individual terms within vocabs - instances of <code>skos:Concept</code> - are also presented in a flat list per vocabulary: a <code>skos:Collection</code>.
   </p>
   <h4>Profiles</h4>
-<p>All the content of all vocabs can be accessed individually in web page (HTML) and machine-readable forms. Each list fo vocabs, vocabulary and Concept web page contains a link to the listing of all profiles and formats available for that object. Look for the <strong><em>Alternate Profiles</em></strong> hyperlink.</p>
+  <p>The content of all vocabs in this system can be accessed individually in web page (HTML) and machine-readable forms. Each list of vocabs, vocabulary and Concept web page contains a link to the listing of all profiles and formats available for that object. Look for the <strong><em>Alternate Profiles</em></strong> hyperlink.</p>
   <h4>Services</h4>
-  <p>All of the vocabularies in this system are accessible via a single <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL endpoint</a>:</p>
+  <p>All of the vocabularies in this system are accessible via a single <a href="https://en.wikipedia.org/wiki/SPARQL">SPARQL endpoint</a> which can be used to query for any content in this system:</p>
   <ul>
       <li><a href="{{ url_for('sparql') }}">SPARQL Endpoint</a></li>
   </ul>
