@@ -276,3 +276,12 @@ table.metadata th {
 code {
     font-size: small;
 }
+
+table.layout tr:nth-child(even) {background: #EEE}
+table.layout td {
+    vertical-align: top;
+    padding: 5px;
+}
+table.layout {
+    border-collapse: collapse;
+}
