@@ -14,12 +14,11 @@ RETRY_SLEEP_SECONDS = 10
 SPARQL_TIMEOUT = 60
 PORT = 5000
 
-#
-#   Vocabulary data sources
+# Vocabulary data sources
 #
 # Here is the list of vocabulary sources that this instance uses. FILE, SPARQL, RVA & VOCBENCH are implemented already
 # and are on by default (e.g. VOCBENCH = None) but other sources, such as GitHub can be added. To enable them, add a new
-# like like VocBench.XXX = None
+# like VocBench.XXX = None
 class VocabSource:
     FILE = "FILE"
     SPARQL = "SPARQL"
@@ -29,11 +28,9 @@ class VocabSource:
 
 
 # BEGIN Instance Vars
-SYSTEM_URI_BASE = "$SYSTEM_URI_BASE"
+SYSTEM_BASE_URI = "$SYSTEM_BASE_URI"
 USE_SYSTEM_URIS = True
-# ABSOLUTE_URI_BASE = "$ABSOLUTE_URI_BASE"
-# ABS_URI_BASE_IN_DATA = "$ABS_URI_BASE_IN_DATA"
-DEBUG = True
+DEBUG = False
 SPARQL_ENDPOINT = "$SPARQL_ENDPOINT"
 SPARQL_USERNAME = $SPARQL_USERNAME
 SPARQL_PASSWORD = $SPARQL_PASSWORD
@@ -50,7 +47,6 @@ DATA_SOURCES = {
     },
 }
 
-# Details for the main vocabulary list. Can be overriden in the vocabularies.html template
 # BEGIN Vocabs list info
 VOCS_TITLE = "CGI Vocabularies"
 VOCS_URI = "http://resource.geosciml.org/def/voc/"

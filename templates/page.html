@@ -2,7 +2,7 @@
 <html>
 <head lang="en">
     <meta charset="UTF-8">
-    <title>{{ title }}</title>
+    <title>CGI VocPrez</title>
     <link rel="stylesheet" href="{{ url_for('static', filename='cgi.css') }}">
 </head>
 <body>
@@ -28,7 +28,7 @@
   <div id="mainmenu" style="grid-column:2;">
     {% include 'nav.html' %}
   </div>   
-  <div id="content" style="grid-column:2;">
+  <div id="content" style="grid-column:2; display: grid; margin-bottom: 20px;">
     {% block content %}{% endblock %}
   </div><!-- #content -->
   <div style="grid-column:1; background-color:rgb(151,119,26);"></div>

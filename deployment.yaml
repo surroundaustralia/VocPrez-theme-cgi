@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: cgi-vocprez-deployment
+  labels:
+    app: cgi
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: cgi
+  template:
+    metadata:
+      labels:
+        app: cgi
+    spec:
+      containers:
+      - name: cgi-vocprez
+        image: 680471986828.dkr.ecr.ap-southeast-2.amazonaws.com/cgi/vocprez:latest
+        imagePullPolicy: Always
+        resources:
+          requests:
+            memory: "64Mi"
+            cpu: "100m"
+          limits:
+            memory: "512Mi"
+            cpu: "250m"
+        ports:
+        - containerPort: 5000
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: cgi-vocprez-service
+spec:
+  selector:
+    app: cgi
+  type: LoadBalancer
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 5000
