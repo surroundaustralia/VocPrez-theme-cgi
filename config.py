@@ -48,7 +48,7 @@ DATA_SOURCES = {
 }
 
 # BEGIN Vocabs list info
-VOCS_TITLE = "CGI Vocabularies"
+VOCS_TITLE = "CGI Vocabularies Register"
 VOCS_URI = "http://resource.geosciml.org/def/voc/"
 VOCS_DESC = "Vocabularies managed and published by the Commission for Geoscience Information (CGI)"
 # END Vocabs list info
